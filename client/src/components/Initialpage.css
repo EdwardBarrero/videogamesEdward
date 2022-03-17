@@ -1,0 +1,49 @@
+.initial {
+  background-image: url("https://la.network/wp-content/uploads/2022/02/pexels-pixabay-159204-1024x691.jpg");
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.initialTB {
+  display: flex;
+  width: 100vw;
+  height: 95vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcometxt {
+  color: chartreuse;
+  text-shadow: -5px -5px 10px black, 5px 5px 10px black;
+  font-size: 50px;
+}
+
+.welcomebtn {
+  background-color: black;
+  font-size: 20px;
+  color: chartreuse;
+  border-color: chartreuse;
+  width: 150px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+.welcomebtn:hover {
+  border-color: black;
+  background-color: chartreuse;
+  color: black;
+  box-shadow: 0 0 20px white;
+}
+
+.editor{
+    margin: 0px;
+    padding-right: 10px;
+    color: white;
+    display: flex;
+    justify-content: end;
+
+}

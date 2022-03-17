@@ -1,0 +1,29 @@
+.navBar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: black;
+  border-bottom: 1px chartreuse solid;
+}
+
+.titlenav1 {
+  margin: 0;
+  color: chartreuse;
+}
+
+.titlenav2 {
+  text-decoration: none;
+}
+.titlenav2 h1 {
+  color: chartreuse;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.buscadornav input {
+  width: 12vw;
+  height: 20px;
+  margin-right: 3px;
+}
+
+
