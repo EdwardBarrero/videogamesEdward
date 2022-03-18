@@ -1,0 +1,16 @@
+.homepage {
+  background-image: url("https://dlcdnrog.asus.com/rog/media/1637784966993.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 92.5vh;
+  color: white;
+}
+
+.gamecards {
+  display: flex;
+  flex-wrap: wrap;
+  /* border: 2px black solid; */
+  height: 80vh;
+  width: 84vw;
+  margin-left: 8vw;
+}
