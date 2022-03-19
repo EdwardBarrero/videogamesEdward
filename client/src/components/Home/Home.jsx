@@ -13,20 +13,18 @@ export default function Home() {
   }, [dispatch]);
   const games = useSelector((state) => state.games);
   let gamespg = games.slice(0, 15);
-  console.log("gamespg", gamespg);
-  console.log("games", games);
   return (
     <div className="homepage">
       <Filter />
       <div className="gamecards">
-        {gamespg?.map((game) => (
+        {gamespg?.map((game) => (          
             <GameCard
               id={game.id}
               name={game.name}
               img={game.background_image}
               genres={game.genres}
-            />
-          ))}
+            />  
+        ))}
       </div>
     </div>
   );

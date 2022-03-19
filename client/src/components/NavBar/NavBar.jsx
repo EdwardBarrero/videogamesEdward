@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./NavBar.css";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getGame } from "../../actions/index";
 
 export default function NavBar() {

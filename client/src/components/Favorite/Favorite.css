@@ -1,0 +1,14 @@
+.favorite-background{
+  position: fixed;
+  width: 100vw;
+  height: 100vh
+}
+
+.favorite-gamecards {
+    display: flex;
+    flex-wrap: wrap;
+    /* border: 2px black solid; */
+    height: 80vh;
+    width: 84vw;
+    margin-left: 8vw;
+  }

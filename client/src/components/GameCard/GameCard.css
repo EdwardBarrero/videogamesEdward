@@ -15,13 +15,15 @@
   align-content: center;
   backdrop-filter: blur(3px);
   border-radius: 5px;
-  box-shadow: 10px 10px 15px black, -10px -10px 15px black,
-    10px -10px 15px black, -10px 10px 15px black;
+  box-shadow: 5px 5px 15px black, -5px -5px 15px black,
+    5px -5px 15px black, -5px 5px 15px black;
+  text-decoration: none;
+  color: white;
 }
 .gameCard:hover {
   box-shadow: 10px 10px 15px white, -10px -10px 15px white,
     10px -10px 15px white, -10px 10px 15px white;
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .gameCard p {
@@ -31,5 +33,5 @@
 }
 
 .gameCard span {
-  margin: 0; 
+  margin: 0;
 }

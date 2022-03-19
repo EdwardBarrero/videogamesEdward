@@ -1,7 +1,11 @@
 import React from "react";
 import "./FilterAndOrder.css";
+import {useDispatch} from "react-redux"
+import { getGames } from "../../actions";
 
 export default function Filter() {
+  const dispatch = useDispatch();
+  
   return (
     <div className="filter-order">
       <div className="filters">
@@ -30,7 +34,10 @@ export default function Filter() {
           </div>
         </div>
         <button className="filter-btn">Juegos Creados</button>
-        <button className="filter-btn">Juegos Existentes</button>
+        <button className="filter-btn" onClick={(e) => {
+          e.preventDefault();
+          dispatch(getGames());
+        }}>Juegos Existentes</button>
       </div>
       <div className="dropdown">
         <button className="dropbtn-order">Ordenar por:</button>

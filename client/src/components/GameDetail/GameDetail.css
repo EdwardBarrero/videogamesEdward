@@ -1,0 +1,73 @@
+.gamedetail{
+    display: flex;
+    justify-content: center;
+}
+
+.gamedetailimg {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 1;
+}
+
+.gamedetail-content {
+  z-index: 2;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 50vw;
+  height: 92.5vh;
+  justify-self: center;
+  backdrop-filter: blur(20px);
+  align-self: center ;
+  border-right: 1px solid white ;
+  border-left: 1px solid white;
+  color: white;
+  text-shadow: 0 0 4px black;
+  font-weight: bold;  
+}
+
+.gamedetail-content img{
+    margin-top: 15px;
+    width: 20vw;
+    height: 20vh;
+    box-shadow: 0 10px 10px black, 0 -10px 10px black;
+}
+
+.gamedetail-title {
+    margin-bottom: 0;
+}
+
+.gamedetail-desciption{
+    margin: 10px;
+    margin-top: 0;
+}
+.gamedetail-desciption p{
+    font-size: 13px;
+}
+
+.gamedetail-desciption h5{
+    margin-bottom: 0px;
+    margin-top: 50px;
+}
+
+.gamedetail-genres {
+    margin-bottom: 20px;
+}
+
+.gameDetail-favbtn{
+    border: none;
+    background-color: chartreuse;
+    width: 10vw;
+    height: 4vh;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px black;
+}
+
+.gameDetail-favbtn:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
