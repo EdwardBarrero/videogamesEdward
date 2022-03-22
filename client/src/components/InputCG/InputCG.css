@@ -1,0 +1,60 @@
+.inputcg-form{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.inputcg-label{
+    display: block;
+    min-height: 40px;
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+.inputcg-input{
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 5px;
+    border: 3px solid transparent;
+    padding-inline-start: 10px;
+    transition: 0.3s ease all;
+}
+
+.inputcg-inputt {
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 5px;
+    border: 3px solid #1ed12d;
+    padding-inline-start: 10px;
+    transition: 0.3s ease all;
+}
+.inputcg-inputt:focus{
+    outline: none;
+}
+.inputcg-inputf {
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 5px;
+    border: 3px solid #bb2929;
+    padding-inline-start: 10px;
+    transition: 0.3s ease all;
+}
+.inputcg-inputf:focus{
+    outline: none;
+}
+
+.inputcg-input:focus{
+    border: 3px solid #0075ff;
+    outline: none;
+    box-shadow: 1px 0 5px black;
+}
+
+.inputcg-em{
+    font-size: 12px;
+    margin-bottom: 0;
+    color: #bb2929;
+    display: none;
+}

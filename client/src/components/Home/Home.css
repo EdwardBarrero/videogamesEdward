@@ -1,8 +1,10 @@
 .homepage {
+  position: relative;
+  top: 75px;
   background-image: url("https://dlcdnrog.asus.com/rog/media/1637784966993.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 92.5vh;
+  min-height: 90.9vh;
   color: white;
 }
 
