@@ -18,15 +18,18 @@ const InputCG = ({
   };
 
   let className = "inputcg-input";
+  let classNameP = "inputcg-em";
   const validate = () => {
-    if (expresionRegular) {
-      if (expresionRegular.test(state.campo)) state.validate = true;
-      else state.validate = false;
-    }
+    if (expresionRegular.test(state.campo)) state.validate = true;
+    else state.validate = false;
   };
 
-  if (state.validate === true) className = "inputcg-inputt";
-  else if (state.validate === false) className = "inputcg-inputf";
+  // if (state.validate === true) {
+  //   className = "inputcg-inputt";
+  // } else if (state.validate === false) {
+  //   className = "inputcg-inputf";
+  //   classNameP = "inputcg-emf";
+  // }
 
   return (
     <form className="inputcg-form">
@@ -35,7 +38,7 @@ const InputCG = ({
       </label>
       <input
         type="text"
-        className={className}
+        className={state.validate == true? "inputcg-input active" : state.validate == false?"inputcg-input disable": "inputcg-input"}
         placeholder={placeHolder}
         id={id}
         value={state.campo}
@@ -43,7 +46,10 @@ const InputCG = ({
         onKeyUp={validate}
         onBlur={validate}
       />
-      <p className="inputcg-em">{errorMsg}</p>
+      {
+
+      }
+      {/* <p className={classNameP}>{errorMsg}</p> */}
     </form>
   );
 };

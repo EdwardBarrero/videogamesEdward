@@ -66,26 +66,35 @@
   border-bottom-left-radius: 10px;
 }
 
-.dropdown-content-order p {
+.dropdown-content-order button {
   color: black;
   padding-left: 10px;
   margin: 0;
   padding: 5px;
+  border: none;
+  width: 100%;
+  background-color: transparent;
 }
 
-.dropdown-content p {
+.dropdown-content button {
+  display: block;
   color: black;
   padding-left: 10px;
   margin: 0;
   padding: 5px;
+  width: 100%;
+  background-color: transparent;
+  border: none;
 }
 
-.dropdown-content p:hover {
+
+
+.dropdown-content button:hover {
   background-color: #60d153;
   cursor: pointer;
 }
 
-.dropdown-content-order p:hover {
+.dropdown-content-order button:hover {
   background-color: #60d153;
   cursor: pointer;
 }

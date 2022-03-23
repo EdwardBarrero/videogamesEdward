@@ -1,9 +1,37 @@
-import React from "react";
+import React, {useState} from "react";
 import "./FilterAndOrder.css";
 import {useDispatch} from "react-redux"
 import { getGames } from "../../actions";
 
 export default function Filter() {
+  const [filter, setFilter] = useState("");
+  const [order, setOrder] = useState("");
+
+  const onClick = (g) => {
+    setFilter(g);
+  }
+  const orderbtn = ["Rating", "Alfabético A-Z", "Alfabético Z-A" ];
+  const genres = [
+    "Action",
+    "Indie",
+    "Adventure",
+    "RPG",
+    "Strategy",
+    "Shooter",
+    "Casual",
+    "Simulation",
+    "Puzzle",
+    "Arcade",
+    "Platformer",
+    "Racing",
+    "Massively Multiplayer",
+    "Sports",
+    "Fighting",
+    "Family",
+    "Board Games",
+    "Educational",
+    "Card",
+  ];
   const dispatch = useDispatch();
   
   return (
@@ -12,25 +40,11 @@ export default function Filter() {
         <div className="dropdown">
           <button className="dropbtn">Generos</button>
           <div className="dropdown-content">
-            <p>Action</p>
-            <p>Indie</p>
-            <p>Adventure</p>
-            <p>RPG</p>
-            <p>Strategy</p>
-            <p>Shooter</p>
-            <p>Casual</p>
-            <p>Simulation</p>
-            <p>Puzzle</p>
-            <p>Arcade</p>
-            <p>Platformer</p>
-            <p>Racing</p>
-            <p>Massively Multiplayer</p>
-            <p>Sports</p>
-            <p>Fighting</p>
-            <p>Family</p>
-            <p>Board Games</p>
-            <p>Educational</p>
-            <p>Card</p>
+            {
+              genres.map((g)=>(
+                <button key={g} onClick={()=>onClick(g)}>{g}</button>
+              ))
+            }
           </div>
         </div>
         <button className="filter-btn">Juegos Creados</button>
@@ -42,10 +56,13 @@ export default function Filter() {
       <div className="dropdown">
         <button className="dropbtn-order">Ordenar por:</button>
         <div className="dropdown-content-order">
-          <p>Rating Asc</p>
-          <p>Rating Desc</p>
-          <p>Alfabético Asc</p>
-          <p>alfabético Desc</p>
+          {
+            orderbtn.map((o) => (
+              <button key ={o} onClick={()=>{
+                setOrder(o);
+              }}>{o}</button>
+            ))
+          }
         </div>
       </div>
     </div>

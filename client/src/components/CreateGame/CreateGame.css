@@ -15,7 +15,8 @@
   position: relative;
   top: 75px;
   background-color: #d4d4d4;
-  height: 90.9vh;
+  background-size: cover;
+  
 }
 
 .creategame-ef {
@@ -54,3 +55,44 @@
   margin: 0;
   display: none;
 }
+
+.creategame-genres {
+  grid-column: span 2;
+  border: 2px solid gray;
+  padding: 10px;
+  border-radius: 10px;
+}
+.creategame-genres p{
+  font-size: 14px;
+}
+
+.creategame-genres b{
+  font-size: 25px;
+}
+
+.creategame-genrescontent{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  
+}
+
+.creategame-genresbtnf {
+  height: 5vh;
+  border: transparent;
+  cursor: pointer;
+}
+
+.creategame-genresbtnf:hover {
+  border: 1px black solid;
+}
+
+.creategame-genresbtnt {
+  height: 5vh;
+  border: transparent;
+  background-color: chartreuse;
+  cursor: pointer;
+  box-shadow: 1px 0 5px black inset;
+}
+
+
