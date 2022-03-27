@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./InputCG.css";
 
 const InputCG = ({
@@ -17,19 +17,11 @@ const InputCG = ({
     });
   };
 
-  let className = "inputcg-input";
-  let classNameP = "inputcg-em";
   const validate = () => {
     if (expresionRegular.test(state.campo)) state.validate = true;
     else state.validate = false;
   };
 
-  // if (state.validate === true) {
-  //   className = "inputcg-inputt";
-  // } else if (state.validate === false) {
-  //   className = "inputcg-inputf";
-  //   classNameP = "inputcg-emf";
-  // }
 
   return (
     <form className="inputcg-form">
@@ -46,10 +38,7 @@ const InputCG = ({
         onKeyUp={validate}
         onBlur={validate}
       />
-      {
-
-      }
-      {/* <p className={classNameP}>{errorMsg}</p> */}
+      <p className={state.validate == false? "inputcg-em error" : "inputcg-em"}>{errorMsg}</p>
     </form>
   );
 };

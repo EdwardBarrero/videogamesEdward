@@ -21,7 +21,7 @@ export default function GameDetail() {
         <h1 className="gamedetail-title">{gameDetail.name}</h1>
         <div className="gamedetail-genres">
           {gameDetail.genres?.map((genr) => (
-            <span> | {genr.name} | </span>
+            <span> | {genr} | </span>
           ))}
         </div>
         {favoriteIds.includes(gameDetail.id) ? (
@@ -42,14 +42,14 @@ export default function GameDetail() {
 
         <div className="gamedetail-desciption">
           <h5>DESCRIPCION</h5>
-          <p>{gameDetail.description_raw}</p>
+          <p>{gameDetail.description}</p>
         </div>
 
         <p>Fecha de lanzamiento: {gameDetail.released}</p>
         <p>Rating: {gameDetail.rating}</p>
         <div className="gamedetail-platforms">
           {gameDetail.platforms?.map((platform) => (
-            <span> | {platform.platform.name} | </span>
+            <span> | {platform} | </span>
           ))}
         </div>
       </div>

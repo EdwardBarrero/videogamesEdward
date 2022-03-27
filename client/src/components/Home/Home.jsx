@@ -9,10 +9,10 @@ export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getGames());
+    dispatch(getGames("","","",""));
   }, [dispatch]);
   const games = useSelector((state) => state.games);
-  let gamespg = games.slice(0, 15);
+  let gamespg = games.slice(0,15)
   return (
     <div className="homepage">
       <Filter />

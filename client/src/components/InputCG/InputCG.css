@@ -36,16 +36,14 @@
   color: #bb2929;
   display: none;
 }
-
-.inputcg-emf {
-  font-size: 12px;
-  margin-bottom: 0;
-  color: #bb2929;
+.error{
+  display: block;
 }
+
+
 .active {
   border: 3px solid #1ed12d;
 }
-
 .disable {
   border: 3px solid #bb2929;
 }

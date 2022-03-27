@@ -4,31 +4,35 @@ export const GET_DETAIL = "GET_DETAIL";
 export const ADD_FAVORITE = "ADD_FAVORITE";
 export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
 
-export function getGames() {
+
+export function getGames(genr, order, page, filterGames) {
   return function (dispatch) {
     return fetch(
-      `https://api.rawg.io/api/games?key=0f64f45aa536442cace1694c6759487d`
+      `http://localhost:3002/api/videogames?genr=${genr}&order=${order}&page=${page}&filterGames=${filterGames}`
     )
       .then((ress) => ress.json())
       .then((json) => {
         dispatch({
           type: GET_GAMES,
-          payload: json.results,
+          payload: json,
         });
       });
   };
 }
 
+
+
+
 export function getGame(title) {
   return function (dispatch) {
     return fetch(
-      `https://api.rawg.io/api/games?search=${title}&key=0f64f45aa536442cace1694c6759487d`
+      `http://localhost:3002/api/videogames/game/${title}`
     )
       .then((ress) => ress.json())
       .then((json) => {
         dispatch({
           type: GET_GAME,
-          payload: json.results,
+          payload: json,
         });
       });
   };
@@ -36,7 +40,7 @@ export function getGame(title) {
 
 export function getDetail(id) {
   return function (dispatch) {
-    return fetch(`https://api.rawg.io/api/games/${id}?key=0f64f45aa536442cace1694c6759487d`)
+    return fetch(`http://localhost:3002/api/videogames/detail/${id}`)
       .then((res) => res.json())
       .then((json) => {
         dispatch({ type: GET_DETAIL, payload: json });
