@@ -3,6 +3,10 @@ export const GET_GAME = "GET_GAME";
 export const GET_DETAIL = "GET_DETAIL";
 export const ADD_FAVORITE = "ADD_FAVORITE";
 export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
+export const PAGE = "PAGE";
+export const FILTER ="FILTER";
+export const ORDER ="ORDER";
+export const FILTER_GAMES ="FILTER_GAMES";
 
 
 export function getGames(genr, order, page, filterGames) {
@@ -20,14 +24,9 @@ export function getGames(genr, order, page, filterGames) {
   };
 }
 
-
-
-
 export function getGame(title) {
   return function (dispatch) {
-    return fetch(
-      `http://localhost:3002/api/videogames/game/${title}`
-    )
+    return fetch(`http://localhost:3002/api/videogames/game/${title}`)
       .then((ress) => ress.json())
       .then((json) => {
         dispatch({
@@ -48,14 +47,42 @@ export function getDetail(id) {
   };
 }
 
-export function addFavorite(game){
+export function addFavorite(game) {
   return {
-    type: ADD_FAVORITE, payload: game
-  }
+    type: ADD_FAVORITE,
+    payload: game,
+  };
 }
 
-export function removeFavorite(id){
+export function removeFavorite(id) {
   return {
-    type: REMOVE_FAVORITE, payload: id
-  }
+    type: REMOVE_FAVORITE,
+    payload: id,
+  };
+}
+
+export function setPage(event) {
+  return {
+    type: PAGE,
+    payload: event,
+  };
+}
+
+export function setFilter(genr) {
+  return {
+    type: FILTER,
+    payload: genr,
+  };
+}
+export function setOrder(order) {
+  return {
+    type: ORDER,
+    payload: order,
+  };
+}
+export function setFlterGames(games) {
+  return {
+    type: FILTER_GAMES,
+    payload: games,
+  };
 }

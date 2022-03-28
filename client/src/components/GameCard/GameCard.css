@@ -2,23 +2,22 @@
   box-sizing: border-box;
   width: 12vw;
   height: 12vh;
-  border: 2px solid black;
   border-radius: 5px;
 }
 
 .gameCard {
-  margin: 20px;
+  margin-top: 30px;
   padding: 10px;
   border: 2px chartreuse solid;
-  max-width: 12vw;
-  max-height: 20vh;
+  width: 12vw;
+  max-height: 25vh;
   align-content: center;
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(20px);
   border-radius: 5px;
-  box-shadow: 5px 5px 15px black, -5px -5px 15px black,
-    5px -5px 15px black, -5px 5px 15px black;
+  box-shadow: 5px 5px 10px chartreuse;
   text-decoration: none;
   color: white;
+  overflow: hidden;
 }
 .gameCard:hover {
   box-shadow: 10px 10px 15px white, -10px -10px 15px white,
@@ -34,4 +33,5 @@
 
 .gameCard span {
   margin: 0;
+  color: white;
 }

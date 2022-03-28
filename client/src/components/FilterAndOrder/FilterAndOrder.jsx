@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import "./FilterAndOrder.css";
-import { useDispatch } from "react-redux";
-import { getGames } from "../../actions";
+import { useDispatch, useSelector } from "react-redux";
+import { getGames, setFilter, setFlterGames, setOrder } from "../../actions";
 
 export default function Filter() {
-  const [filter, setFilter] = useState("");
-  const [order, setOrder] = useState("");
-  const [filterGames, setFilterGames] = useState("");
+  const filter = useSelector((state) => state.filter);
+  const order = useSelector((state) => state.order);
+  const filterGames = useSelector((state) => state.filterGames);
+  const page = useSelector((state) => state.page);
 
-  const onClick = (g) => {
-    setFilter(g);
-  };
   const orderbtn = ["Rating-Desc", "Rating-Asc", "A-Z", "Z-A"];
   const genres = [
     "Action",
@@ -33,6 +31,7 @@ export default function Filter() {
     "Educational",
     "Card",
   ];
+
   const dispatch = useDispatch();
 
   return (
@@ -45,8 +44,10 @@ export default function Filter() {
               <button
                 key={g}
                 onClick={() => {
-                  onClick(g);
-                  dispatch(getGames(`${g}`, `${order}`, "", `${filterGames}`));
+                  dispatch(setFilter(g));
+                  dispatch(
+                    getGames(`${g}`, `${order}`, `${page}`, `${filterGames}`)
+                  );
                 }}
               >
                 {g}
@@ -58,8 +59,10 @@ export default function Filter() {
           className="filter-btn"
           onClick={(e) => {
             e.preventDefault();
-            setFilterGames("juegosCreados");
-            dispatch(getGames(`${filter}`, `${order}`, "", `juegosCreados`));
+            dispatch(setFlterGames("juegosCreados"));
+            dispatch(
+              getGames(``, `${order}`, ``, `juegosCreados`)
+            );
           }}
         >
           Juegos Creados
@@ -68,8 +71,10 @@ export default function Filter() {
           className="filter-btn"
           onClick={async (e) => {
             e.preventDefault();
-            setFilterGames("juegosExistentes");
-            dispatch(getGames(`${filter}`, `${order}`, "", `juegosExistentes`));
+            dispatch(setFlterGames("juegosExistentes"));
+            dispatch(
+              getGames(``, `${order}`, ``, `juegosExistentes`)
+            );
           }}
         >
           Juegos Existentes
@@ -78,7 +83,7 @@ export default function Filter() {
           className="filter-btn"
           onClick={async (e) => {
             e.preventDefault();
-            setFilterGames("");
+            dispatch(setFlterGames(""));
             dispatch(getGames("", "", "", ""));
           }}
         >
@@ -92,8 +97,10 @@ export default function Filter() {
             <button
               key={o}
               onClick={() => {
-                setOrder(o);
-                dispatch(getGames(`${filter}`, `${o}`, "", `${filterGames}`))
+                dispatch(setOrder(o));
+                dispatch(
+                  getGames(`${filter}`, `${o}`, `${page}`, `${filterGames}`)
+                );
               }}
             >
               {o}

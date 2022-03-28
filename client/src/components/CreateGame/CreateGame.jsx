@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./CreateGame.css";
 import InputCG from "../InputCG/InputCG";
+import { Link } from "react-router-dom";
 const axios = require("axios");
 
 export default function CreateGame() {
@@ -163,22 +164,37 @@ export default function CreateGame() {
       setError(false);
       await axios
         .post("http://localhost:3002/api/videogames/", {
-          "name": nombre.campo,
-          "description": descripcion.campo,
-          "rating": rating.campo,
-          "platforms": plataformas.plataformas.join(","),
-          "released": date.campo,
+          name: nombre.campo,
+          description: descripcion.campo,
+          rating: rating.campo,
+          platforms: plataformas.plataformas.join(","),
+          released: date.campo,
         })
-        .then(function (response) {
-          console.log(response);
+        .then((ress) => {
+          const gameId = ress.data;
+          generos.generos.map((genero) => {
+            axios
+              .get(`http://localhost:3002/api/genres/${genero}`)
+              .then((response) => {
+                let genrId = response.data;
+                axios.post(
+                  `http://localhost:3002/api/videogames/${gameId}/genr/${genrId}`
+                );
+              });
+          });
         })
-        .catch(function (error) {
-          console.log(error);
+        .catch((error) => {
           setError(true);
         });
     } else {
       setError(true);
     }
+  };
+
+  const resetStatus = async () => {
+    setNombre({
+      campo: "",
+    });
   };
 
   return (
@@ -286,7 +302,13 @@ export default function CreateGame() {
                 </p>
               )
             )}
-            <button onClick={validateForm}>CREAR</button>
+            {error === null || error === true ? (
+              <button onClick={validateForm}>CREAR</button>
+            ) : (
+              error === false && (
+                <button type="submit" onClick={() => {window.location.reload()}}>CREAR NUEVO JUEGO</button>
+              )
+            )}
           </div>
         </div>
       </div>

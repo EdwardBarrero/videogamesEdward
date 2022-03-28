@@ -10,7 +10,7 @@ export default function Favorite() {
   return (
     <div className="favoritegames">
       <img className="favorite-background"
-        src="https://elchapuzasinformatico.com/wp-content/uploads/2021/05/Mando-DualSense-Cosmic-Red-scaled.jpg"
+        src="https://dlcdnrog.asus.com/rog/media/1637784966993.jpg"
         alt="img not found"
       />
       <div>

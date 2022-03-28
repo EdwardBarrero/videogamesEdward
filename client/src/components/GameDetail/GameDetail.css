@@ -20,7 +20,7 @@
   width: 50vw;
   min-height: 90.9vh;
   justify-self: center;
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(10px);
   align-self: center ;
   border-right: 1px solid white ;
   border-left: 1px solid white;
@@ -30,7 +30,7 @@
 }
 
 .gamedetail-content img{
-    margin-top: 15px;
+    margin-top: 40px;
     width: 20vw;
     height: 20vh;
     box-shadow: 0 10px 10px black, 0 -10px 10px black;

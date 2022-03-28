@@ -20,10 +20,6 @@
   transition: 0.3s ease all;
 }
 
-
-
-
-
 .inputcg-input:focus {
   border: 3px solid #0075ff;
   outline: none;
@@ -36,14 +32,15 @@
   color: #bb2929;
   display: none;
 }
+
 .error{
   display: block;
 }
 
-
 .active {
   border: 3px solid #1ed12d;
 }
+
 .disable {
   border: 3px solid #bb2929;
 }
