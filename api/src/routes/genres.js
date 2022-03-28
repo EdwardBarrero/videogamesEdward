@@ -10,21 +10,31 @@ router.get("/", async (req, res, next) => {
     let genresApi = await axios.get(
       `https://api.rawg.io/api/genres?key=${KEY_API}`
     );
-    let allGenrs = await genresApi.data.results.map((genr) => {      
+    let allGenrs = await genresApi.data.results.map((genr) => {
       return Genr.create({
         name: genr.name,
       });
     });
-    Promise.all(allGenrs)
-    .then(() => {
-      Genr.findAll({ include: Videogame})
-      .then(ress => {
-        res.send(ress)
-      })      
-    })
+    Promise.all(allGenrs).then(() => {
+      Genr.findAll({ include: Videogame }).then((ress) => {
+        res.send(ress);
+      });
+    });
   } catch (error) {
     next(error);
   }
+});
+
+router.get("/:name", (req, res, next) => {
+  let { name } = req.params;
+  return Genr.findAll({
+    where: {
+      name: name,
+    },
+  }).then((ress) => {
+    res.send(ress[0].id)
+  })
+  .catch(error => next(error))
 });
 
 router.post("/", (req, res, next) => {
@@ -48,17 +58,18 @@ router.delete("/", (req, res, next) => {
   res.send("soy delete /genres");
 });
 
-
-
-router.get("/platforms", ( req, res, next) => {
-axios.get("https://api.rawg.io/api/platforms?key=0f64f45aa536442cace1694c6759487d")
-.then(ress => {
-  let platforms = ress.data.results.map((platform) => {
-    return platform.name
-  })
-  platforms.flat();
-  res.send(platforms)
-})
-})
+router.get("/platforms", (req, res, next) => {
+  axios
+    .get(
+      "https://api.rawg.io/api/platforms?key=0f64f45aa536442cace1694c6759487d"
+    )
+    .then((ress) => {
+      let platforms = ress.data.results.map((platform) => {
+        return platform.name;
+      });
+      platforms.flat();
+      res.send(platforms);
+    });
+});
 
 module.exports = router;

@@ -214,7 +214,7 @@ router.post("/", (req, res, next) => {
     platforms,
     released
   })
-    .then((videogame) => res.send(videogame))
+    .then((videogame) => res.send(videogame.id))
     .catch((error) => next(error));
 });
 
