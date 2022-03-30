@@ -4,15 +4,15 @@ export const GET_DETAIL = "GET_DETAIL";
 export const ADD_FAVORITE = "ADD_FAVORITE";
 export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
 export const PAGE = "PAGE";
-export const FILTER ="FILTER";
-export const ORDER ="ORDER";
-export const FILTER_GAMES ="FILTER_GAMES";
+export const FILTER = "FILTER";
+export const ORDER = "ORDER";
+export const FILTER_GAMES = "FILTER_GAMES";
+export const SET_BUSQUEDA = "SET_BUSQUEDA";
 
-
-export function getGames(genr, order, page, filterGames) {
+export function getGames(genr, order, page, filterGames, buscador) {
   return function (dispatch) {
     return fetch(
-      `http://localhost:3002/api/videogames?genr=${genr}&order=${order}&page=${page}&filterGames=${filterGames}`
+      `http://localhost:3002/api/videogames?genr=${genr}&order=${order}&page=${page}&filterGames=${filterGames}&buscador=${buscador}`
     )
       .then((ress) => ress.json())
       .then((json) => {
@@ -38,6 +38,12 @@ export function getGame(title) {
 }
 
 export function getDetail(id) {
+  if (id === "reset") {
+    return {
+      type: GET_DETAIL,
+      payload: {},
+    };
+  }
   return function (dispatch) {
     return fetch(`http://localhost:3002/api/videogames/detail/${id}`)
       .then((res) => res.json())
@@ -84,5 +90,12 @@ export function setFlterGames(games) {
   return {
     type: FILTER_GAMES,
     payload: games,
+  };
+}
+
+export function setBusqueda(busqueda) {
+  return {
+    type: SET_BUSQUEDA,
+    payload: busqueda,
   };
 }

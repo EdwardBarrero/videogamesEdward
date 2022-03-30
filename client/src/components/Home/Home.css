@@ -15,8 +15,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   gap: 0;
-  height: 90vh;
-  width: 84vw;
+  min-height: 90vh;
+  min-width: 84vw;
   padding-top: 25px;
 }
 

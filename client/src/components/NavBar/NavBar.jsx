@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import "./NavBar.css";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { getGame} from "../../actions/index";
+import { useDispatch, useSelector } from "react-redux";
+import { getGame, setBusqueda} from "../../actions/index";
 
 export default function NavBar() {
   const [buscar, setBuscar] = useState("");
   const dispatch = useDispatch();
+
+  const {page} = useSelector(state => state.page)
 
   
 
@@ -20,13 +22,14 @@ export default function NavBar() {
           <h4>Favorite Games</h4>
         </Link>
       </div>
-      <Link className="titlenav2" to={"/home"} >
+      <Link  className="titlenav2" to={"/home"} >
         <h1>GAMES WORLD</h1>
       </Link>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          dispatch(getGame(buscar));
+          dispatch(setBusqueda(buscar));
+          dispatch(getGame(buscar, page));
         }}
         className="buscadornav"
       >

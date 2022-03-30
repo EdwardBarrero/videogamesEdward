@@ -7,6 +7,7 @@ import {
   setFlterGames,
   setOrder,
   setPage,
+  setBusqueda
 } from "../../actions";
 
 export default function Filter() {
@@ -88,6 +89,7 @@ export default function Filter() {
             e.preventDefault();
             dispatch(setPage("init"))
             dispatch(setFlterGames(""));
+            dispatch(setBusqueda(""))
             dispatch(getGames("", "", "", ""));
           }}
         >

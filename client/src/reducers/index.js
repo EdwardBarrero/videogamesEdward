@@ -8,6 +8,7 @@ import {
   FILTER,
   FILTER_GAMES,
   ORDER,
+  SET_BUSQUEDA
 } from "../actions/index";
 
 const initialState = {
@@ -18,6 +19,7 @@ const initialState = {
   filter: "",
   order: "",
   filterGames: "",
+  busqueda: "",
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -88,6 +90,12 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         filterGames: action.payload,
       };
+
+    case SET_BUSQUEDA:
+      return {
+        ...state,
+        busqueda: action.payload
+      }
 
     default:
       return state;

@@ -17,6 +17,7 @@ const filterDataDbFunction = (videogamesDb, page) => {
       return {
         id: videogame.dataValues.id,
         name: videogame.dataValues.name,
+        slug: videogame.dataValues.slug,
         rating,
         genres,
         platforms,
@@ -37,6 +38,7 @@ const filterDataApiFunction = (videogamesApi) => {
       id: videogame.id,
       name: videogame.name,
       rating: videogame.rating,
+      slug: videogame.slug,
       genres,
       platforms,
       background_image: videogame.background_image,
@@ -50,6 +52,7 @@ router.get("/", (req, res, next) => {
   const { genr } = req.query;
   const { order } = req.query;
   const { filterGames } = req.query;
+
   if (!page) {
     page = 1;
   }
@@ -179,16 +182,9 @@ router.get("/detail/:videogameid", async (req, res, next) => {
 router.get("/game/:title", async (req, res, next) => {
   try {
     let { title } = req.params;
-    let { page } = req.query;
-
-    if (!page) {
-      page = 1;
-    }
-
     title = title.toLocaleLowerCase();
-    let videogameApi = await axios.get(
-      `https://api.rawg.io/api/games?search=${title}&key=${KEY_API}&page=${page}`
-    );
+    let start = true;
+    let page = 1;
     let videogameDb = await Videogame.findAll({
       include: Genr,
       where: {
@@ -197,10 +193,23 @@ router.get("/game/:title", async (req, res, next) => {
         },
       },
     });
-
-    let filterDataApi = filterDataApiFunction(videogameApi);
     let filterDataDb = filterDataDbFunction(videogameDb, page);
-    let allGamesResult = [...filterDataDb, ...filterDataApi];
+    let allGamesResult = [...filterDataDb];
+    let videogameApi = {
+      data: {
+        next: "https://api.rawg.io/api/games?key=0f64f45aa536442cace1694c6759487d&page=2&search=gta",
+      },
+    };
+    while (videogameApi.data.next) {
+      videogameApi = await axios.get(
+        `https://api.rawg.io/api/games?search=${title}&key=${KEY_API}&page=${page}`
+      );
+      console.log(videogameApi);
+      let filterDataApi = filterDataApiFunction(videogameApi);
+
+      allGamesResult = [...allGamesResult, ...filterDataApi];
+      page++;
+    }
     res.send(allGamesResult);
   } catch (error) {
     next(error);

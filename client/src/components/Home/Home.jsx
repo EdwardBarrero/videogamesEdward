@@ -2,13 +2,14 @@ import React, { useEffect } from "react";
 import "./Home.css";
 import Filter from "../FilterAndOrder/FilterAndOrder";
 import GameCard from "../GameCard/GameCard";
-import { getGames, setPage } from "../../actions";
+import { getGames, setPage, getDetail } from "../../actions";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(getDetail("reset"));
     dispatch(getGames("", "", `${page}`, ""));
   }, [dispatch]);
 
@@ -17,6 +18,7 @@ export default function Home() {
   const filter = useSelector((state) => state.filter);
   const order = useSelector((state) => state.order);
   const filterGames = useSelector((state) => state.filterGames);
+  const busqueda = useSelector(state => state.busqueda)
 
   const onClickPre = () => {
     if (page > 1) {
@@ -36,8 +38,9 @@ export default function Home() {
       );
     }
   };
-
-  let gamespg = games.slice(0, 15);
+  let gamespg = []
+  if(busqueda === "") gamespg = games.slice(0, 15);
+  else gamespg = games
   return (
     <div className="homepage">
       <Filter />
@@ -51,7 +54,9 @@ export default function Home() {
           />
         ))}
       </div>
-      <div className="homepage-paginado">
+
+      {
+        busqueda == "" ? <div className="homepage-paginado">
         <button onClick={onClickPre}>PREV</button>
         <div className={"paginado-numbers"}>
           <span
@@ -71,6 +76,9 @@ export default function Home() {
 
         <button onClick={onClickPos}>NEXT</button>
       </div>
+      : null
+      }
+      
     </div>
   );
 }
