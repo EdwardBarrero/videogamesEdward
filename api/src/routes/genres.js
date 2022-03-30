@@ -58,18 +58,5 @@ router.delete("/", (req, res, next) => {
   res.send("soy delete /genres");
 });
 
-router.get("/platforms", (req, res, next) => {
-  axios
-    .get(
-      "https://api.rawg.io/api/platforms?key=0f64f45aa536442cace1694c6759487d"
-    )
-    .then((ress) => {
-      let platforms = ress.data.results.map((platform) => {
-        return platform.name;
-      });
-      platforms.flat();
-      res.send(platforms);
-    });
-});
 
 module.exports = router;

@@ -177,30 +177,34 @@ router.get("/detail/:videogameid", async (req, res, next) => {
 });
 
 router.get("/game/:title", async (req, res, next) => {
-  let { title } = req.params;
-  let { page } = req.query;
+  try {
+    let { title } = req.params;
+    let { page } = req.query;
 
-  if (!page) {
-    page = 1;
-  }
+    if (!page) {
+      page = 1;
+    }
 
-  title = title.toLocaleLowerCase();
-  let videogameApi = await axios.get(
-    `https://api.rawg.io/api/games?search=${title}&key=${KEY_API}&page=${page}`
-  );
-  let videogameDb = await Videogame.findAll({
-    include: Genr,
-    where: {
-      slug: {
-        [Op.substring]: title,
+    title = title.toLocaleLowerCase();
+    let videogameApi = await axios.get(
+      `https://api.rawg.io/api/games?search=${title}&key=${KEY_API}&page=${page}`
+    );
+    let videogameDb = await Videogame.findAll({
+      include: Genr,
+      where: {
+        slug: {
+          [Op.substring]: title,
+        },
       },
-    },
-  });
+    });
 
-  let filterDataApi = filterDataApiFunction(videogameApi);
-  let filterDataDb = filterDataDbFunction(videogameDb, page);
-  let allGamesResult = [...filterDataDb, ...filterDataApi];
-  res.send(allGamesResult);
+    let filterDataApi = filterDataApiFunction(videogameApi);
+    let filterDataDb = filterDataDbFunction(videogameDb, page);
+    let allGamesResult = [...filterDataDb, ...filterDataApi];
+    res.send(allGamesResult);
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.post("/", (req, res, next) => {
@@ -212,7 +216,7 @@ router.post("/", (req, res, next) => {
     description,
     rating,
     platforms,
-    released
+    released,
   })
     .then((videogame) => res.send(videogame.id))
     .catch((error) => next(error));
