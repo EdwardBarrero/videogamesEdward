@@ -67,6 +67,11 @@ export default function rootReducer(state = initialState, action) {
           ...state,
           page: newPage,
         };
+      } else if (action.payload === "init"){
+        return {
+          ...state,
+          page: 1
+        }
       }
     case ORDER:
       return {

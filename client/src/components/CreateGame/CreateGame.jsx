@@ -152,7 +152,7 @@ export default function CreateGame() {
     }
   };
 
-  const validateForm = async () => {
+  const validateForm = () => {
     if (
       nombre.validate &&
       descripcion.validate &&
@@ -162,7 +162,7 @@ export default function CreateGame() {
       plataformas.validate
     ) {
       setError(false);
-      await axios
+      axios
         .post("http://localhost:3002/api/videogames/", {
           name: nombre.campo,
           description: descripcion.campo,
@@ -183,18 +183,12 @@ export default function CreateGame() {
               });
           });
         })
-        .catch((error) => {
+        .catch(() => {
           setError(true);
         });
     } else {
       setError(true);
     }
-  };
-
-  const resetStatus = async () => {
-    setNombre({
-      campo: "",
-    });
   };
 
   return (
@@ -306,7 +300,14 @@ export default function CreateGame() {
               <button onClick={validateForm}>CREAR</button>
             ) : (
               error === false && (
-                <button type="submit" onClick={() => {window.location.reload()}}>CREAR NUEVO JUEGO</button>
+                <button
+                  type="submit"
+                  onClick={() => {
+                    window.location.reload();
+                  }}
+                >
+                  CREAR NUEVO JUEGO
+                </button>
               )
             )}
           </div>

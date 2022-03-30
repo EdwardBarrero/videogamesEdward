@@ -1,7 +1,13 @@
 import React from "react";
 import "./FilterAndOrder.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getGames, setFilter, setFlterGames, setOrder } from "../../actions";
+import {
+  getGames,
+  setFilter,
+  setFlterGames,
+  setOrder,
+  setPage,
+} from "../../actions";
 
 export default function Filter() {
   const filter = useSelector((state) => state.filter);
@@ -44,10 +50,9 @@ export default function Filter() {
               <button
                 key={g}
                 onClick={() => {
+                  dispatch(setPage("init"));
                   dispatch(setFilter(g));
-                  dispatch(
-                    getGames(`${g}`, `${order}`, `${page}`, `${filterGames}`)
-                  );
+                  dispatch(getGames(`${g}`, `${order}`, 1, `${filterGames}`));
                 }}
               >
                 {g}
@@ -59,10 +64,9 @@ export default function Filter() {
           className="filter-btn"
           onClick={(e) => {
             e.preventDefault();
+            dispatch(setPage("init"));
             dispatch(setFlterGames("juegosCreados"));
-            dispatch(
-              getGames(``, `${order}`, ``, `juegosCreados`)
-            );
+            dispatch(getGames(``, `${order}`, 1, `juegosCreados`));
           }}
         >
           Juegos Creados
@@ -71,10 +75,9 @@ export default function Filter() {
           className="filter-btn"
           onClick={async (e) => {
             e.preventDefault();
+            dispatch(setPage("init"));
             dispatch(setFlterGames("juegosExistentes"));
-            dispatch(
-              getGames(``, `${order}`, ``, `juegosExistentes`)
-            );
+            dispatch(getGames(``, `${order}`, 1, `juegosExistentes`));
           }}
         >
           Juegos Existentes
@@ -83,6 +86,7 @@ export default function Filter() {
           className="filter-btn"
           onClick={async (e) => {
             e.preventDefault();
+            dispatch(setPage("init"))
             dispatch(setFlterGames(""));
             dispatch(getGames("", "", "", ""));
           }}

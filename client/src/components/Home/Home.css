@@ -43,12 +43,46 @@
   border: 2px solid white;
 }
 
-.homepage-paginado span{
-  font-size: 35px;
-  background-color: chartreuse;
-  width: 6vw;
+
+.paginado-numbers{
+  width: 10vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+.actualpage{
+  background-color: rgba(128, 255, 0, 0.589);
+  width: 3vw;
   text-align: center;
+  font-size: 30px;
   color: black;
+  cursor:default;
+}
+
+.prepage{
+  background-color: chartreuse;
+  width: 3vw;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px ;
+  text-align: center;
+  font-size: 30px;
+  color: black;
+  cursor: pointer;
+}
+.pospage{
+  background-color: chartreuse;
+  width: 3vw;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px ;
+  text-align: center;
+  font-size: 30px;
+  color: black;
+  cursor: pointer;
+}
+
+.notfound{
+  background-color: gray;
+  cursor:default;
 }
 
 

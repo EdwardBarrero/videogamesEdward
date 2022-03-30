@@ -18,6 +18,25 @@ export default function Home() {
   const order = useSelector((state) => state.order);
   const filterGames = useSelector((state) => state.filterGames);
 
+  const onClickPre = () => {
+    if (page > 1) {
+      let actualPage = page - 1;
+      dispatch(setPage("less"));
+      dispatch(
+        getGames(`${filter}`, `${order}`, `${actualPage}`, `${filterGames}`)
+      );
+    }
+  };
+  const onClickPos = () => {
+    if (page < 10) {
+      let actualPage = page + 1;
+      dispatch(setPage("more"));
+      dispatch(
+        getGames(`${filter}`, `${order}`, `${actualPage}`, `${filterGames}`)
+      );
+    }
+  };
+
   let gamespg = games.slice(0, 15);
   return (
     <div className="homepage">
@@ -33,29 +52,24 @@ export default function Home() {
         ))}
       </div>
       <div className="homepage-paginado">
-        <button
-          onClick={async (e) => {
-            if (page > 1) {
-              let actualPage = page - 1;
-              dispatch(setPage("less"));
-              dispatch(getGames(`${filter}`, `${order}`, `${actualPage}`, `${filterGames}`));
-            }
-          }}
-        >
-          PREV
-        </button>
-        <span>{page}</span>
-        <button
-          onClick={async (e) => {
-            if (page <= 10) {
-              let actualPage = page + 1;
-              dispatch(setPage("more"));
-              dispatch(getGames(`${filter}`, `${order}`, `${actualPage}`, `${filterGames}`));
-            }
-          }}
-        >
-          NEXT
-        </button>
+        <button onClick={onClickPre}>PREV</button>
+        <div className={"paginado-numbers"}>
+          <span
+            className={page > 1 ? "prepage" : "prepage notfound"}
+            onClick={onClickPre}
+          >
+            {page - 1}
+          </span>
+          <span className="actualpage">{page}</span>
+          <span
+            className={page < 10 ? "pospage" : "pospage notfound"}
+            onClick={onClickPos}
+          >
+            {page + 1}
+          </span>
+        </div>
+
+        <button onClick={onClickPos}>NEXT</button>
       </div>
     </div>
   );
