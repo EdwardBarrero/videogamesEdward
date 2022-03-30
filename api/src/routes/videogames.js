@@ -197,7 +197,7 @@ router.get("/game/:title", async (req, res, next) => {
     let allGamesResult = [...filterDataDb];
     let videogameApi = {
       data: {
-        next: "https://api.rawg.io/api/games?key=0f64f45aa536442cace1694c6759487d&page=2&search=gta",
+        next: `https://api.rawg.io/api/games?key=${KEY_API}&page=2&search=gta`,
       },
     };
     while (videogameApi.data.next) {
