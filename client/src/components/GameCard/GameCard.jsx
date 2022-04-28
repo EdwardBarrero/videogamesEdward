@@ -9,7 +9,7 @@ const GameCard = ({ name, img, genres, id }) => {
         <img src={img} />
         <p> {name} </p>
         {genres?.map((genr) => (
-          <span> {genr} |</span>
+          <span key={genr}> {genr} |</span>
         ))}
       </div>
     </Link>

@@ -7,8 +7,8 @@
 .favorite-gamecards {
   position: relative;
   top: 75px;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   height: 80vh;
   width: 84vw;
   margin-left: 8vw;

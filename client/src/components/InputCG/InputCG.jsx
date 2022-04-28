@@ -30,7 +30,7 @@ const InputCG = ({
       </label>
       <input
         type="text"
-        className={state.validate == true? "inputcg-input active" : state.validate == false?"inputcg-input disable": "inputcg-input"}
+        className={state.validate === true? "inputcg-input active" : state.validate === false?"inputcg-input disable": "inputcg-input"}
         placeholder={placeHolder}
         id={id}
         value={state.campo}
@@ -38,7 +38,7 @@ const InputCG = ({
         onKeyUp={validate}
         onBlur={validate}
       />
-      <p className={state.validate == false? "inputcg-em error" : "inputcg-em"}>{errorMsg}</p>
+      <p className={state.validate === false? "inputcg-em error" : "inputcg-em"}>{errorMsg}</p>
     </form>
   );
 };

@@ -1,11 +1,9 @@
 import React from "react";
 import "./Favorite.css";
-import { useDispatch, useSelector } from "react-redux";
-import {Link} from "react-router-dom"
+import { useSelector } from "react-redux";
 import GameCard from "../GameCard/GameCard";
 
 export default function Favorite() {
-  const dispatch = useDispatch();
   const favoriteGames = useSelector((state) => state.favoriteGames);
   return (
     <div className="favoritegames">

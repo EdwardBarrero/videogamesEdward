@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import "./NavBar.css";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getGame, setBusqueda} from "../../actions/index";
 
 export default function NavBar() {
   const [buscar, setBuscar] = useState("");
   const dispatch = useDispatch();
-
-  const {page} = useSelector(state => state.page)
 
   
 
@@ -29,7 +27,8 @@ export default function NavBar() {
         onSubmit={(e) => {
           e.preventDefault();
           dispatch(setBusqueda(buscar));
-          dispatch(getGame(buscar, page));
+          dispatch(getGame(buscar));
+          
         }}
         className="buscadornav"
       >
@@ -37,6 +36,7 @@ export default function NavBar() {
           type="text"
           placeholder="     Buscar juegos..."
           onChange={(e) => setBuscar(e.target.value)}
+          onSubmit={(e) => console.log(e)}
         />
       </form>
     </div>

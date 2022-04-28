@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./CreateGame.css";
 import InputCG from "../InputCG/InputCG";
-import { Link } from "react-router-dom";
 const axios = require("axios");
 
 export default function CreateGame() {
@@ -172,7 +171,7 @@ export default function CreateGame() {
         })
         .then((ress) => {
           const gameId = ress.data;
-          generos.generos.map((genero) => {
+          generos.generos.forEach((genero) => {
             axios
               .get(`http://localhost:3002/api/genres/${genero}`)
               .then((response) => {

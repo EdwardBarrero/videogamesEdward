@@ -12,7 +12,7 @@ export const SET_BUSQUEDA = "SET_BUSQUEDA";
 export function getGames(genr, order, page, filterGames, buscador) {
   return function (dispatch) {
     return fetch(
-      `http://localhost:3002/api/videogames?genr=${genr}&order=${order}&page=${page}&filterGames=${filterGames}&buscador=${buscador}`
+      `http://192.168.0.114:3002/api/videogames?genr=${genr}&order=${order}&page=${page}&filterGames=${filterGames}&buscador=${buscador}`
     )
       .then((ress) => ress.json())
       .then((json) => {
@@ -26,7 +26,7 @@ export function getGames(genr, order, page, filterGames, buscador) {
 
 export function getGame(title) {
   return function (dispatch) {
-    return fetch(`http://localhost:3002/api/videogames/game/${title}`)
+    return fetch(`http://192.168.0.114:3002/api/videogames/game/${title}`)
       .then((ress) => ress.json())
       .then((json) => {
         dispatch({
@@ -45,7 +45,7 @@ export function getDetail(id) {
     };
   }
   return function (dispatch) {
-    return fetch(`http://localhost:3002/api/videogames/detail/${id}`)
+    return fetch(`http://192.168.0.114:3002/api/videogames/detail/${id}`)
       .then((res) => res.json())
       .then((json) => {
         dispatch({ type: GET_DETAIL, payload: json });
