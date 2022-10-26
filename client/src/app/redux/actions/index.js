@@ -1,13 +1,4 @@
-export const GET_GAMES = "GET_GAMES";
-export const GET_GAME = "GET_GAME";
-export const GET_DETAIL = "GET_DETAIL";
-export const ADD_FAVORITE = "ADD_FAVORITE";
-export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
-export const PAGE = "PAGE";
-export const FILTER = "FILTER";
-export const ORDER = "ORDER";
-export const FILTER_GAMES = "FILTER_GAMES";
-export const SET_BUSQUEDA = "SET_BUSQUEDA";
+import { ACTION_CONSTANTS as constants } from "../constants/action-constants";
 
 export function getGames(genr, order, page, filterGames, buscador) {
   return function (dispatch) {
@@ -17,7 +8,7 @@ export function getGames(genr, order, page, filterGames, buscador) {
       .then((ress) => ress.json())
       .then((json) => {
         dispatch({
-          type: GET_GAMES,
+          type: constants.GET_GAMES,
           payload: json,
         });
       });
@@ -30,7 +21,7 @@ export function getGame(title) {
       .then((ress) => ress.json())
       .then((json) => {
         dispatch({
-          type: GET_GAME,
+          type: constants.GET_GAME,
           payload: json,
         });
       });
@@ -40,7 +31,7 @@ export function getGame(title) {
 export function getDetail(id) {
   if (id === "reset") {
     return {
-      type: GET_DETAIL,
+      type: constants.GET_DETAIL,
       payload: {},
     };
   }
@@ -48,54 +39,54 @@ export function getDetail(id) {
     return fetch(`http://192.168.0.114:3002/api/videogames/detail/${id}`)
       .then((res) => res.json())
       .then((json) => {
-        dispatch({ type: GET_DETAIL, payload: json });
+        dispatch({ type: constants.GET_DETAIL, payload: json });
       });
   };
 }
 
 export function addFavorite(game) {
   return {
-    type: ADD_FAVORITE,
+    type: constants.ADD_FAVORITE,
     payload: game,
   };
 }
 
 export function removeFavorite(id) {
   return {
-    type: REMOVE_FAVORITE,
+    type: constants.REMOVE_FAVORITE,
     payload: id,
   };
 }
 
 export function setPage(event) {
   return {
-    type: PAGE,
+    type: constants.PAGE,
     payload: event,
   };
 }
 
 export function setFilter(genr) {
   return {
-    type: FILTER,
+    type: constants.FILTER,
     payload: genr,
   };
 }
 export function setOrder(order) {
   return {
-    type: ORDER,
+    type: constants.ORDER,
     payload: order,
   };
 }
 export function setFlterGames(games) {
   return {
-    type: FILTER_GAMES,
+    type: constants.FILTER_GAMES,
     payload: games,
   };
 }
 
 export function setBusqueda(busqueda) {
   return {
-    type: SET_BUSQUEDA,
+    type: constants.SET_BUSQUEDA,
     payload: busqueda,
   };
 }

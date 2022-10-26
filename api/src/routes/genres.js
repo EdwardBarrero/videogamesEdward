@@ -6,7 +6,10 @@ const { KEY_API } = process.env;
 const router = Router();
 
 router.get("/", async (req, res, next) => {
-  try {
+  let validate = await Genr.findAll()
+  
+  if(validate.length === 0 ){
+      try {
     let genresApi = await axios.get(
       `https://api.rawg.io/api/genres?key=${KEY_API}`
     );
@@ -23,6 +26,9 @@ router.get("/", async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+  }
+  
+
 });
 
 router.get("/:name", (req, res, next) => {

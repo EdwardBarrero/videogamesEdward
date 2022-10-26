@@ -1,0 +1,46 @@
+.navbar {
+    position: fixed;
+    align-items: center;
+    background-color: black;
+    border-bottom: 1px chartreuse solid;
+    z-index: 90;
+    min-width: 100vw;
+    height: 75px;
+  }
+  
+  .nav-title-1 {
+    margin: 0;
+    color: chartreuse;
+    text-decoration: none;
+    padding-left: 10px;
+  }
+  
+  .titlenav1:hover{
+    text-shadow: 0 0 10px white;
+  }
+  
+  .titlenav2 {
+    text-decoration: none;
+  }
+  
+  .titlenav2:hover{
+    text-shadow: 0 0 10px white;
+  }
+  
+  .titlenav2 h1 {
+    color: chartreuse;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .searchbar-nav input {
+    width: 12vw;
+    margin-right: 25px;
+    border: chartreuse 1.5px solid;
+    border-radius: 5px;
+    height: 24px;
+    background: none;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+  }

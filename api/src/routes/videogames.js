@@ -9,7 +9,7 @@ const filterDataDbFunction = (videogamesDb, page) => {
   let filterDataDb = [];
   if (page == 1) {
     filterDataDb = videogamesDb.map((videogame) => {
-      let rating = parseInt(videogame.dataValues.rating);
+      let rating = parseInt(videogame.dataValues.rating); 
       let platforms = videogame.dataValues.platforms.split(",");
       let genres = videogame.dataValues.Genrs.map((genr) => {
         return genr.dataValues.name;
@@ -30,10 +30,18 @@ const filterDataDbFunction = (videogamesDb, page) => {
 
 const filterDataApiFunction = (videogamesApi) => {
   let filterDataApi = videogamesApi.data.results.map((videogame) => {
-    let genres = videogame.genres.map((genr) => genr.name);
-    let platforms = videogame.parent_platforms.map(
-      (platform) => platform.platform.name
-    );
+    let genres = [];
+    if (videogame.genres) {
+      genres = videogame.genres.map((genr) => genr.name);
+    }
+
+    let platforms = [];
+    if (videogame.parent_platforms) {
+      platforms = videogame.parent_platforms.map(
+        (platform) => platform.platform.name
+      );
+    }
+
     return {
       id: videogame.id,
       name: videogame.name,
@@ -153,7 +161,6 @@ router.get("/detail/:videogameid", async (req, res, next) => {
       let videogame = await axios(
         `https://api.rawg.io/api/games/${videogameid}?key=${KEY_API}`
       ).then((ress) => {
-        console.log(ress.data);
         let platforms = ress.data.platforms.map((platform) => {
           return platform.platform.name;
         });
@@ -197,18 +204,18 @@ router.get("/game/:title", async (req, res, next) => {
     let allGamesResult = [...filterDataDb];
     let videogameApi = {
       data: {
-        next: `https://api.rawg.io/api/games?key=${KEY_API}&page=2&search=gta`,
+        next: true,
       },
     };
     while (videogameApi.data.next) {
       videogameApi = await axios.get(
         `https://api.rawg.io/api/games?search=${title}&key=${KEY_API}&page=${page}`
       );
-      console.log(videogameApi);
       let filterDataApi = filterDataApiFunction(videogameApi);
 
       allGamesResult = [...allGamesResult, ...filterDataApi];
       page++;
+      start = false;
     }
     res.send(allGamesResult);
   } catch (error) {

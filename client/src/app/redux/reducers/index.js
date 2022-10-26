@@ -1,15 +1,4 @@
-import {
-  GET_GAMES,
-  GET_GAME,
-  GET_DETAIL,
-  ADD_FAVORITE,
-  REMOVE_FAVORITE,
-  PAGE,
-  FILTER,
-  FILTER_GAMES,
-  ORDER,
-  SET_BUSQUEDA
-} from "../actions/index";
+import { ACTION_CONSTANTS as constants } from "../constants/action-constants";
 
 const initialState = {
   games: [],
@@ -24,30 +13,30 @@ const initialState = {
 
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
-    case GET_GAMES:
+    case constants.GET_GAMES:
       return {
         ...state,
         games: action.payload,
       };
 
-    case GET_GAME:
+    case constants.GET_GAME:
       return {
         ...state,
         games: action.payload,
       };
 
-    case GET_DETAIL:
+    case constants.GET_DETAIL:
       return {
         ...state,
         gameDetail: action.payload,
       };
-    case ADD_FAVORITE:
+    case constants.ADD_FAVORITE:
       return {
         ...state,
         favoriteGames: [...state.favoriteGames, action.payload],
       };
 
-    case REMOVE_FAVORITE:
+    case constants.REMOVE_FAVORITE:
       const newFavorites = state.favoriteGames.filter((game) => {
         return game.id !== action.payload;
       });
@@ -56,7 +45,7 @@ export default function rootReducer(state = initialState, action) {
         favoriteGames: newFavorites,
       };
 
-    case PAGE:
+    case constants.PAGE:
       if (action.payload === "less") {
         let newPage = state.page - 1;
         return {
@@ -75,23 +64,23 @@ export default function rootReducer(state = initialState, action) {
           page: 1
         }
       }
-    case ORDER:
+    case constants.ORDER:
       return {
         ...state,
         order: action.payload,
       };
-    case FILTER:
+    case constants.FILTER:
       return {
         ...state,
         filter: action.payload,
       };
-    case FILTER_GAMES:
+    case constants.FILTER_GAMES:
       return {
         ...state,
         filterGames: action.payload,
       };
 
-    case SET_BUSQUEDA:
+    case constants.SET_BUSQUEDA:
       return {
         ...state,
         busqueda: action.payload

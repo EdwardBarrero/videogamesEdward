@@ -2,15 +2,15 @@ import React, { useEffect } from "react";
 import "./Home.css";
 import Filter from "../FilterAndOrder/FilterAndOrder";
 import GameCard from "../GameCard/GameCard";
-import { getGames, setPage, getDetail } from "../../actions";
+import * as services from "../../app/redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getDetail("reset"));
-    dispatch(getGames("", "", `${page}`, ""));
+    dispatch(services.getDetail("reset"));
+    dispatch(services.getGames("", "", `${page}`, ""));
   }, [dispatch]);
 
   const games = useSelector((state) => state.games);
@@ -23,18 +23,18 @@ export default function Home() {
   const onClickPre = () => {
     if (page > 1) {
       let actualPage = page - 1;
-      dispatch(setPage("less"));
+      dispatch(services.setPage("less"));
       dispatch(
-        getGames(`${filter}`, `${order}`, `${actualPage}`, `${filterGames}`)
+        services.getGames(`${filter}`, `${order}`, `${actualPage}`, `${filterGames}`)
       );
     }
   };
   const onClickPos = () => {
     if (page < 10) {
       let actualPage = page + 1;
-      dispatch(setPage("more"));
+      dispatch(services.setPage("more"));
       dispatch(
-        getGames(`${filter}`, `${order}`, `${actualPage}`, `${filterGames}`)
+        services.getGames(`${filter}`, `${order}`, `${actualPage}`, `${filterGames}`)
       );
     }
   };
@@ -44,15 +44,18 @@ export default function Home() {
   return (
     <div className="homepage">
       <Filter />
-      <div className="gamecards">
+      <div className="game-cards">
         {gamespg?.map((game) => (
-          <GameCard
-            key={game.id}
-            id={game.id}
-            name={game.name}
-            img={game.background_image}
-            genres={game.genres}
-          />
+          <div className="mx-auto my-4">
+            <GameCard
+              key={game.id}
+              id={game.id}
+              name={game.name}
+              img={game.background_image}
+              genres={game.genres}
+            />
+
+          </div>
         ))}
       </div>
 

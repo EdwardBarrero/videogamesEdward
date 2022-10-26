@@ -1,14 +1,7 @@
 import React from "react";
 import "./FilterAndOrder.css";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getGames,
-  setFilter,
-  setFlterGames,
-  setOrder,
-  setPage,
-  setBusqueda
-} from "../../actions";
+import * as services from "../../app/redux/actions";
 
 export default function Filter() {
   const filter = useSelector((state) => state.filter);
@@ -51,9 +44,9 @@ export default function Filter() {
               <button
                 key={g}
                 onClick={() => {
-                  dispatch(setPage("init"));
-                  dispatch(setFilter(g));
-                  dispatch(getGames(`${g}`, `${order}`, 1, `${filterGames}`));
+                  dispatch(services.setPage("init"));
+                  dispatch(services.setFilter(g));
+                  dispatch(services.getGames(`${g}`, `${order}`, 1, `${filterGames}`));
                 }}
               >
                 {g}
@@ -65,9 +58,9 @@ export default function Filter() {
           className="filter-btn"
           onClick={(e) => {
             e.preventDefault();
-            dispatch(setPage("init"));
-            dispatch(setFlterGames("juegosCreados"));
-            dispatch(getGames(``, `${order}`, 1, `juegosCreados`));
+            dispatch(services.setPage("init"));
+            dispatch(services.setFlterGames("juegosCreados"));
+            dispatch(services.getGames(``, `${order}`, 1, `juegosCreados`));
           }}
         >
           Juegos Creados
@@ -76,9 +69,9 @@ export default function Filter() {
           className="filter-btn"
           onClick={async (e) => {
             e.preventDefault();
-            dispatch(setPage("init"));
-            dispatch(setFlterGames("juegosExistentes"));
-            dispatch(getGames(``, `${order}`, 1, `juegosExistentes`));
+            dispatch(services.setPage("init"));
+            dispatch(services.setFlterGames("juegosExistentes"));
+            dispatch(services.getGames(``, `${order}`, 1, `juegosExistentes`));
           }}
         >
           Juegos Existentes
@@ -87,10 +80,10 @@ export default function Filter() {
           className="filter-btn"
           onClick={async (e) => {
             e.preventDefault();
-            dispatch(setPage("init"))
-            dispatch(setFlterGames(""));
-            dispatch(setBusqueda(""))
-            dispatch(getGames("", "", "", ""));
+            dispatch(services.setPage("init"))
+            dispatch(services.setFlterGames(""));
+            dispatch(services.setBusqueda(""))
+            dispatch(services.getGames("", "", "", ""));
           }}
         >
           Todos los Juegos
@@ -103,9 +96,9 @@ export default function Filter() {
             <button
               key={o}
               onClick={() => {
-                dispatch(setOrder(o));
+                dispatch(services.setOrder(o));
                 dispatch(
-                  getGames(`${filter}`, `${o}`, `${page}`, `${filterGames}`)
+                  services.getGames(`${filter}`, `${o}`, `${page}`, `${filterGames}`)
                 );
               }}
             >

@@ -13,7 +13,7 @@ export default function Initialpage() {
       <div className="initialTB">
         <h1 className="welcometxt">WELCOME TO GAMES WORLD</h1>
         <Link to="/home">
-          <button onClick={getGenres} className="welcomebtn">PLAY THE GAME</button>
+          <button onClick={getGenres} className="btn-welcome">PLAY THE GAME</button>
         </Link>
       </div>
       <h2 className="editor" >By EdwardBarrero </h2>

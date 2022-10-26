@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetail, addFavorite, removeFavorite } from "../../actions";
+import * as services from "../../app/redux/actions";
 import "./GameDetail.css";
 
 export default function GameDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getDetail(id));
+    dispatch(services.getDetail(id));
   }, [dispatch]);
   const gameDetail = useSelector((state) => state.gameDetail);
   const favoriteGames = useSelector((state) => state.favoriteGames);
@@ -26,14 +26,14 @@ export default function GameDetail() {
         </div>
         {favoriteIds.includes(gameDetail.id) ? (
           <button
-            onClick={() => dispatch(removeFavorite(gameDetail.id))}
+            onClick={() => dispatch(services.removeFavorite(gameDetail.id))}
             className="gameDetail-favbtn"
           >
             Remover de favoritos
           </button>
         ) : (
           <button
-            onClick={() => dispatch(addFavorite(gameDetail))}
+            onClick={() => dispatch(services.addFavorite(gameDetail))}
             className="gameDetail-favbtn"
           >
             Agregar a favoritos
